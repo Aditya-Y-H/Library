@@ -5,12 +5,22 @@ function Book(title, author, pages) {
   this.author = author;
   this.pages = pages;
   this.read = false;
+  this.uuid = crypto.randomUUID();
 }
 
 Book.prototype.info = function () {
-  return `${this.title} | ${this.author} | ${this.pages} | ${this.read ? "Read" : "Not Read"}`;
+  let info = [];
+  for (property in this) {
+    if (!(typeof this[property] === "function")) {
+      info.push(this[property]);
+    }
+  }
+  return info.join("\n");
 };
 
-const book = new Book("The Hobbit", "John Ronald Reuel Tolkien", "5166");
+function addBookToLibrary(title, author, pages) {
+  const book = new Book(title, author, pages);
+  myLibrary.append(book);
+}
 
-console.log(book.info());
+console.log(new Book("hobbit", "goblin", "3").info());
