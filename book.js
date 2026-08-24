@@ -15,13 +15,27 @@ Book.prototype.info = function () {
       info.push(this[property]);
     }
   }
-  return info.join("\n");
+  return info;
 };
 
 function addBookToLibrary(title, author, pages) {
   const book = new Book(title, author, pages);
   myLibrary.push(book);
   console.log(myLibrary);
+}
+
+const tableBody = document.querySelector("#library-table tbody");
+
+function displayLibrary() {
+  for (book of myLibrary) {
+    let row = document.createElement("tr");
+    for (data of book.info()) {
+      let cell = document.createElement("td");
+      cell.textContent = data;
+      row.appendChild(cell);
+    }
+    tableBody.appendChild(row);
+  }
 }
 
 const newBookBtn = document.querySelector("#new-book-btn");
@@ -36,6 +50,7 @@ newBookBtn.addEventListener("click", () => {
 });
 
 dialogClose.addEventListener("click", () => {
+  event.preventDefault();
   dialog.close();
 });
 
@@ -63,6 +78,8 @@ addBookBtn.addEventListener("click", async (event) => {
   }
 
   const book = addBookToLibrary(title, author, pages);
+
+  displayLibrary();
 
   showPopup(`${book} successfully add to library.`, "success");
 });
