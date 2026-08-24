@@ -44,12 +44,25 @@ const formTitle = document.getElementById("book-title");
 const formAuthor = document.getElementById("book-author");
 const formPages = document.getElementById("book-pages");
 
-addBookBtn.addEventListener("click", (event) => {
+addBookBtn.addEventListener("click", async (event) => {
   event.preventDefault();
 
   const title = formTitle.value;
   const author = formAuthor.value;
   const pages = formPages.value;
 
-  addBookToLibrary(title, author, pages);
+  for (value of [title, author, pages]) {
+    if (!value || value === null || value === undefined) {
+      showPopup(`Input cannot be empty.`, "error");
+      return;
+    }
+  }
+  if (pages <= 0) {
+    showPopup(`Number of pages cannot be less than 1.`, "error");
+    return;
+  }
+
+  const book = addBookToLibrary(title, author, pages);
+
+  showPopup(`${book} successfully add to library.`, "success");
 });
