@@ -20,7 +20,36 @@ Book.prototype.info = function () {
 
 function addBookToLibrary(title, author, pages) {
   const book = new Book(title, author, pages);
-  myLibrary.append(book);
+  myLibrary.push(book);
+  console.log(myLibrary);
 }
 
-console.log(new Book("hobbit", "goblin", "3").info());
+const newBookBtn = document.querySelector("#new-book-btn");
+
+const dialog = document.querySelector(".modal");
+const dialogClose = document.querySelector(".modal-close");
+
+const addBookBtn = document.getElementById("add-book-btn");
+
+newBookBtn.addEventListener("click", () => {
+  dialog.showModal();
+});
+
+dialogClose.addEventListener("click", () => {
+  dialog.close();
+});
+
+// Form
+const formTitle = document.getElementById("book-title");
+const formAuthor = document.getElementById("book-author");
+const formPages = document.getElementById("book-pages");
+
+addBookBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  const title = formTitle.value;
+  const author = formAuthor.value;
+  const pages = formPages.value;
+
+  addBookToLibrary(title, author, pages);
+});
