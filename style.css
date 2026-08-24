@@ -89,3 +89,33 @@ dialog button[type="submit"]:hover {
 }
 
 /* Library Table */
+
+table {
+  table-layout: fixed;
+  width: 90%;
+  margin: 10px auto;
+  border-collapse: collapse;
+  border: 1px solid #e6e6e669;
+  box-shadow: 0 0 10px 1px #18181811;
+  border-radius: 24px;
+}
+
+th,
+td {
+  padding: 0.6em;
+  text-align: center;
+}
+
+thead tr {
+  background-color: #687bda;
+  color: white;
+  box-shadow: 0 0 10px 1px #18181811;
+}
+
+tbody tr {
+  background-color: rgb(255, 255, 255);
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #f6f8f8;
+}
