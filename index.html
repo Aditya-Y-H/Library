@@ -61,7 +61,7 @@
     </div>
 
     <dialog id="add-book-modal" closedby="any">
-      <form action="">
+      <form action="" method="dialog">
         <div class="input-container">
           <label for="title-input">Title</label>
           <input type="text" id="title-input" required />
@@ -74,12 +74,12 @@
 
         <div class="input-container">
           <label for="author-input">Author</label>
-          <input type="text" id="author-input" />
+          <input type="text" id="author-input" required />
         </div>
 
         <div class="input-container">
           <label for="pages-input">Pages</label>
-          <input type="number" id="pages-input" />
+          <input type="number" id="pages-input" min="1" required />
         </div>
 
         <label for="read-input">Pages</label>
