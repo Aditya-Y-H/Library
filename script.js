@@ -23,8 +23,9 @@ function Book(title, synopsis, author, pages, read) {
 
 Book.prototype.info = function () {
   const info = [];
-  for (let property of this) {
-    if (this[property] !== "function") {
+  for (let property in this) {
+    // console.log(this, property, this[property]);
+    if (typeof this[property] !== "function") {
       info.push(this[property]);
     }
   }
@@ -71,6 +72,21 @@ submitBookBtn.addEventListener("click", (event) => {
   addBookToLibrary(book);
   addBookModal.close();
   event.preventDefault();
+  displayLibrary();
 });
 
 // Display Book Form
+
+const booksCardContianer = document.getElementById("books-card-container");
+
+function displayLibrary() {
+  booksCardContianer.innerHTML = "";
+  for (let book of myLibrary) {
+    const card = document.createElement("div");
+    for (let data of book.info()) {
+      card.textContent += data;
+    }
+    card.classList.add("books-card");
+    booksCardContianer.appendChild(card);
+  }
+}
