@@ -301,6 +301,7 @@ form .foot {
   color: var(--bg-color);
 
   background-color: var(--color);
+  cursor: pointer;
 }
 
 .books-card .delete {
