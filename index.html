@@ -63,31 +63,76 @@
     </div>
 
     <dialog id="add-book-modal" closedby="any">
+      <div id="head">
+        <p>Add a Book</p>
+        <button type="button" class="close-add-book">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="#e3e3e3"
+          >
+            <path
+              d="m336-280-56-56 144-144-144-143 56-56 144 144 143-144 56 56-144 143 144 144-56 56-143-144-144 144Z"
+            />
+          </svg>
+        </button>
+      </div>
       <form action="" method="dialog">
-        <div class="input-container">
-          <label for="title-input">Title</label>
-          <input type="text" id="title-input" required />
+        <div id="body">
+          <div class="input-container">
+            <label for="title-input">Title</label>
+            <input
+              class="input"
+              type="text"
+              id="title-input"
+              required
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="input-container">
+            <label for="synopsis-input">Synopsis</label>
+            <textarea
+              class="input"
+              name="synopsis-input"
+              id="synopsis-input"
+              autocomplete="off"
+            ></textarea>
+          </div>
+
+          <div class="input-container">
+            <label for="author-input">Author</label>
+            <input
+              class="input"
+              type="text"
+              id="author-input"
+              required
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="input-container">
+            <label for="pages-input">Pages</label>
+            <input
+              class="input"
+              type="number"
+              id="pages-input"
+              min="1"
+              required
+            />
+          </div>
+
+          <label for="read-input" class="input-checkbox">
+            <input class="input" type="checkbox" id="read-input" />
+            Finished Book
+          </label>
         </div>
 
-        <div class="input-container">
-          <label for="synopsis-input">Synopsis</label>
-          <input type="text" id="synopsis-input" />
+        <div class="foot">
+          <button id="submit-book-btn" type="submit">Submit Book</button>
         </div>
-
-        <div class="input-container">
-          <label for="author-input">Author</label>
-          <input type="text" id="author-input" required />
-        </div>
-
-        <div class="input-container">
-          <label for="pages-input">Pages</label>
-          <input type="number" id="pages-input" min="1" required />
-        </div>
-
-        <label for="read-input">Pages</label>
-        <input type="checkbox" id="read-input" />
-
-        <button id="submit-book-btn" type="submit">Submit Book</button>
       </form>
     </dialog>
   </body>
