@@ -1,9 +1,26 @@
 // Library
 
-const myLibrary = [];
+let myLibrary = [];
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
+}
+
+function getBook(id) {
+  for (let book of myLibrary) {
+    if (book.uuid === id) {
+      return book;
+    }
+  }
+}
+
+function deleteBook(id) {
+  for (let i = 0; i < myLibrary.length; i++) {
+    if (myLibrary[i].uuid === id) {
+      myLibrary = myLibrary.slice(0, i).concat(myLibrary.slice(i + 1));
+      return;
+    }
+  }
 }
 
 // Book Implementation
@@ -84,11 +101,26 @@ const booksCardContianer = document.getElementById("books-card-container");
 const svg =
   '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>';
 
+function toggleRead(id, element, toggleClass) {
+  const book = getBook(id);
+  if (book !== null || !book !== undefined) {
+    book.read = !book.read;
+    element.textContent = book.read ? "Mark Unfinished" : "Mark Finished";
+    element.classList.toggle(toggleClass);
+  }
+}
+
 function displayLibrary() {
   booksCardContianer.innerHTML = "";
   for (let book of myLibrary) {
     let card = document.createElement("div");
     card.classList.add("books-card");
+
+    let uuid = document.createElement("p");
+    uuid.setAttribute("hidden", "hidden");
+    uuid.classList.add("uuid");
+    uuid.textContent = book.uuid;
+    card.appendChild(uuid);
 
     let title = document.createElement("p");
     title.classList.add("title");
@@ -99,6 +131,10 @@ function displayLibrary() {
     deleteBtnContainer.classList.add("delete");
     let deleteBtn = document.createElement("button");
     deleteBtn.innerHTML = svg;
+    deleteBtn.addEventListener("click", (event) => {
+      deleteBook(book.uuid);
+      displayLibrary();
+    });
     deleteBtnContainer.appendChild(deleteBtn);
     card.appendChild(deleteBtnContainer);
 
@@ -116,7 +152,10 @@ function displayLibrary() {
     read.classList.add("read");
     let readBtn = document.createElement("button");
     readBtn.textContent = book.read ? "Mark Unfinished" : "Mark Finished";
-    readBtn.classList.add(book.read ? "finished" : "unfinished");
+    book.read ? readBtn.classList.add("finished") : false;
+    readBtn.addEventListener("click", (event) => {
+      toggleRead(book.uuid, event.target, "finished");
+    });
     read.appendChild(readBtn);
     card.appendChild(read);
 

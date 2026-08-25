@@ -119,10 +119,8 @@ body {
   border-radius: 3px;
   padding: 4px 6px;
   font-size: 0.75rem;
-}
 
-.books-card .read button.finished {
-  --color: green;
+  --color: red;
   --bg-color: white;
 
   border: 1px solid var(--color);
@@ -130,8 +128,9 @@ body {
 
   background-color: var(--bg-color);
 }
-.books-card .read button.unfinished {
-  --color: red;
+
+.books-card .read button.finished {
+  --color: green;
   --bg-color: white;
 
   border: 1px solid var(--color);
