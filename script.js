@@ -14,7 +14,7 @@ function Book(title, synopsis, author, pages, read) {
   }
 
   this.title = title;
-  this.synposis = synopsis;
+  this.synopsis = synopsis;
   this.author = author;
   this.pages = pages;
   this.read = read;
@@ -47,7 +47,7 @@ const submitBookBtn = document.getElementById("submit-book-btn");
 
 const form = {
   title: document.getElementById("title-input"),
-  synposis: document.getElementById("synopsis-input"),
+  synopsis: document.getElementById("synopsis-input"),
   author: document.getElementById("author-input"),
   pages: document.getElementById("pages-input"),
   read: document.getElementById("read-input"),
@@ -62,7 +62,7 @@ submitBookBtn.addEventListener("click", (event) => {
 
   const book = new Book(
     form.title.value,
-    form.synposis.value,
+    form.synopsis.value,
     form.author.value,
     form.pages.value,
     form.read.value,
