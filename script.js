@@ -54,9 +54,16 @@ Book.prototype.info = function () {
 // Add Book Modal
 
 const addBookBtn = document.getElementById("add-book-btn");
+const closeBookBtn = document.querySelector(".close-add-book");
+
 const addBookModal = document.getElementById("add-book-modal");
+
 addBookBtn.addEventListener("click", (event) => {
   addBookModal.showModal();
+});
+
+closeBookBtn.addEventListener("click", (event) => {
+  addBookModal.close();
 });
 
 // Add Book Form
