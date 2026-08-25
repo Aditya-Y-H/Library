@@ -132,6 +132,7 @@ body {
 .close-add-book:focus-visible {
   background-color: #53535341;
   box-shadow: 0 0 1px 10px #53535341;
+  cursor: pointer;
 }
 
 #add-book-modal form #body {
@@ -223,6 +224,7 @@ form .foot {
   border: 1px solid var(--bg-color);
   color: var(--bg-color);
   background-color: var(--primary-color);
+  cursor: pointer;
 }
 
 /* Library */
