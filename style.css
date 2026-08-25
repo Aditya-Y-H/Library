@@ -1,4 +1,5 @@
 :root {
+  font-size: 16px;
   font-family:
     system-ui,
     -apple-system,
@@ -13,170 +14,198 @@
     sans-serif;
 }
 
-:is(html, body):has(:modal) {
-  overflow: hidden;
+p {
+  margin: 0px;
+  padding: 0px;
 }
 
-dialog:not([open]) {
-  opacity: 0;
-  position: absolute;
-  display: none;
+body {
+  min-height: 100vh;
+  margin: 0px;
+  padding: 0px;
 }
 
-dialog {
-  border: none;
-  position: fixed;
-  font-size: 1.2rem;
-  border-radius: 0.5rem;
-  background: white;
-  margin: 1.25rem auto;
-  max-width: 30rem;
-  box-shadow: 0 0 10px #00000029;
-  width: 60%;
-
+#logo-container {
   display: flex;
-}
-
-dialog p {
-  margin: 0;
-  padding: 0.75rem 0;
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-
-dialog form {
-  width: 100%;
-}
-
-dialog .header {
-  display: flex;
+  flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
+  padding: 8px 12px;
+
+  border-bottom: 1px solid black;
 }
 
-dialog .input-container {
+#add-book-btn {
+  --outline-color: #4992d6;
+  --bg-color: white;
+
   display: flex;
-  flex-flow: column;
+  justify-content: space-evenly;
+  align-items: center;
 
-  margin-bottom: 8px;
+  fill: var(--outline-color);
+  --svg-size: 24px;
+  height: var(--svg-size);
+
+  padding: calc(var(--svg-size) * 0.6);
+  background-color: var(--bg-color);
+  border: calc(var(--svg-size) * 0.15) solid var(--outline-color);
+  color: var(--outline-color);
+  border-radius: 32px;
 }
 
-dialog input {
+#add-book-btn:hover {
+  --outline-color: white;
+  --bg-color: #4992d6;
+  cursor: pointer;
+}
+
+#add-book-btn svg {
+  fill: inherit;
+  background-color: inherit;
+  width: var(--svg-size);
+  height: var(--svg-size);
+}
+
+/* Modal */
+
+/* Library */
+
+#books-card-container {
+  display: grid;
+  gap: 36px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 400px));
+  justify-content: center;
+
+  width: 90%;
+  margin: 0 auto;
+  padding: 36px;
+}
+
+.books-card {
+  display: grid;
+  grid-template: 2fr 6fr 1fr 1fr / 8fr 1fr;
+
+  box-sizing: border-box;
+  padding: 12px 18px;
   background-color: white;
-  border: 1px solid rgb(206, 205, 205);
-  border-radius: 15px;
-  padding: 0 0.5rem;
-  height: 1.5rem;
+  box-shadow: 0 5px 25px 1px rgba(0, 0, 0, 0.273);
+  border: none;
+  border-radius: 5px;
+  height: 300px;
 }
 
-dialog input:hover,
-dialog input:focus,
-dialog input:focus-visible {
-  outline: none;
-  box-shadow: 0 2px 5px 3px rgba(0, 0, 0, 0.089);
+.books-card p {
+  margin: 0px;
+  padding: 0px;
 }
 
-dialog .modal-close {
-  --icon-size: 24px;
+.books-card .title {
+  grid-column: 1 / 2;
+
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1rem;
+  color: #478ed0;
+
+  display: flex;
+}
+
+.books-card .read {
+  grid-row: -2;
+}
+
+.books-card .read button {
+  border-radius: 3px;
+  padding: 4px 6px;
+  font-size: 0.75rem;
+}
+
+.books-card .read button.finished {
+  --color: green;
+  --bg-color: white;
+
+  border: 1px solid var(--color);
+  color: var(--color);
+
+  background-color: var(--bg-color);
+}
+.books-card .read button.unfinished {
+  --color: red;
+  --bg-color: white;
+
+  border: 1px solid var(--color);
+  color: var(--color);
+
+  background-color: var(--bg-color);
+}
+
+.books-card .read button:focus-visible,
+.books-card .read button:hover {
+  border: 1px solid var(--bg-color);
+  color: var(--bg-color);
+
+  background-color: var(--color);
+}
+
+.books-card .delete {
+  grid-column: -2 / -1;
+
+  margin-left: auto;
+
+  --svg-size: 24px;
+  width: var(--svg-size);
+  height: var(--svg-size);
+}
+
+.books-card .delete button {
+  width: var(--svg-size);
+  height: var(--svg-size);
 
   background-color: transparent;
   border: none;
   border-radius: 100%;
-  padding: 0px;
-  margin: 0px;
-  max-width: var(--icon-size);
-  max-height: var(--icon-size);
-}
 
-dialog .modal-close:hover {
-  background-color: #0000000e;
-}
-
-dialog button[type="submit"] {
-  background-color: rgb(61, 137, 243);
-  border: none;
-  border-radius: 35px;
-  padding: 0.6rem 0.8rem;
-}
-
-dialog button[type="submit"]:hover {
-  background-color: rgb(79, 148, 243);
-}
-
-/* Library Table */
-
-table {
-  box-sizing: border-box;
-  table-layout: fixed;
-  width: 90%;
-  margin: 0 auto;
-  border-collapse: collapse;
-  border: none;
-  box-shadow: 5px 5px 10px 1px #18181811;
-  border-radius: 24px;
-}
-
-th,
-td {
-  padding: 0.6em;
-  text-align: center;
-}
-
-thead tr {
-  background-color: #687bda;
-  color: white;
-  box-shadow: 0 0 10px 1px #18181811;
-}
-
-tbody tr {
-  background-color: rgb(255, 255, 255);
-}
-
-tbody tr:nth-child(even) {
-  background-color: #b9cff0;
-  color: #4a4a4a;
-}
-
-#caption {
-  box-sizing: border-box;
-  padding: 1em;
-  color: white;
-  letter-spacing: 0.2rem;
-  font-size: 1.5rem;
-  background-color: #687bda;
-
-  width: 90%;
-  height: 70px;
-  margin: 0 auto;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-#caption label {
-  font-size: 0.8rem;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#caption button {
-  --icon-size: 36px;
-
-  width: var(--icon-size);
-  height: var(--icon-size);
-  border: none;
   padding: 0;
   margin: 0;
-  background-color: #687bda;
+}
+
+.books-card .delete button:hover,
+.books-card .delete button:focus-visible {
+  outline: none;
+
+  box-shadow: 0 0 1px 6px #a6a6a648;
+  background-color: #a6a6a648;
   cursor: pointer;
 }
 
-#caption svg {
-  width: var(--icon-size);
-  height: var(--icon-size);
-  background-color: #687bda;
-  fill: white;
+.books-card .delete button svg {
+  width: var(--svg-size);
+  height: var(--svg-size);
+
+  fill: red;
+}
+
+.books-card .synopsis {
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.books-card .synopsis p:first-child {
+  font-size: 1.05rem;
+  margin: 0.25rem;
+}
+
+.books-card .author {
+  grid-row: -1;
+
+  font-size: 0.7rem;
+  font-style: italic;
+  margin-top: auto;
+}
+
+.books-card .pages {
+  grid-row: -1;
+  margin-top: auto;
+  text-align: right;
 }

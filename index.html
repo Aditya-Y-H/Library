@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library</title>
+  </head>
+  <body>
+    <div id="logo-container">
+      <p>Library</p>
+      <button id="add-book-btn">
+        Add Book
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24px"
+          viewBox="0 -960 960 960"
+          width="24px"
+          fill="#e3e3e3"
+        >
+          <path
+            d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <div id="books-card-container">
+      <div class="books-card">
+        <p class="title">The Deluge of War</p>
+        <div class="delete">
+          <button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#e3e3e3"
+            >
+              <path
+                d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="synopsis">
+          <p>Synopsis</p>
+          <p>
+            The deluge of warfare continued unabated. Lorem Ipus sicum polis
+            laith.
+          </p>
+        </div>
+
+        <div class="read">
+          <button class="finished">Mark Finished</button>
+        </div>
+
+        <p class="author">Clausewitz</p>
+        <p class="pages" title="Number of pages">5155</p>
+      </div>
+    </div>
+
+    <dialog id="add-book-modal" closedby="any">
+      <form action="" method="dialog">
+        <div class="input-container">
+          <label for="title-input">Title</label>
+          <input type="text" id="title-input" required />
+        </div>
+
+        <div class="input-container">
+          <label for="synopsis-input">Synopsis</label>
+          <input type="text" id="synopsis-input" />
+        </div>
+
+        <div class="input-container">
+          <label for="author-input">Author</label>
+          <input type="text" id="author-input" required />
+        </div>
+
+        <div class="input-container">
+          <label for="pages-input">Pages</label>
+          <input type="number" id="pages-input" min="1" required />
+        </div>
+
+        <label for="read-input">Pages</label>
+        <input type="checkbox" id="read-input" />
+
+        <button id="submit-book-btn" type="submit">Submit Book</button>
+      </form>
+    </dialog>
+  </body>
+</html>
