@@ -25,29 +25,45 @@ function deleteBook(id) {
 
 // Book Implementation
 
-function Book(title, synopsis, author, pages, read) {
-  if (!new.target) {
-    throw Error("Object must be constructed with 'new' keyword.");
+class Book {
+  #title;
+  #synopsis;
+  #author;
+  #pages;
+  #read;
+  #uuid;
+  constructor(title, synopsis, author, pages, read) {
+    this.#title = title;
+    this.#synopsis = synopsis;
+    this.#author = author;
+    this.#pages = pages;
+    this.#read = read;
+    this.#uuid = crypto.randomUUID();
   }
 
-  this.title = title;
-  this.synopsis = synopsis;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-  this.uuid = crypto.randomUUID();
+  get title() {
+    return this.#title;
+  }
+  get synopsis() {
+    return this.#synopsis;
+  }
+  get author() {
+    return this.#author;
+  }
+  get pages() {
+    return this.#pages;
+  }
+  get read() {
+    return this.#read;
+  }
+  get uuid() {
+    return this.#uuid;
+  }
+
+  set read(status) {
+    this.#read = status;
+  }
 }
-
-Book.prototype.info = function () {
-  const info = [];
-  for (let property in this) {
-    // console.log(this, property, this[property]);
-    if (typeof this[property] !== "function") {
-      info.push(this[property]);
-    }
-  }
-  return info;
-};
 
 // DOM Interaction
 
@@ -92,8 +108,6 @@ submitBookBtn.addEventListener("click", (event) => {
     form.pages.value,
     form.read.checked,
   );
-
-  console.log(book.read);
 
   addBookToLibrary(book);
   addBookModal.close();
